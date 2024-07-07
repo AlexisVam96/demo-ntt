@@ -1,0 +1,41 @@
+{
+	"info": {
+		"_postman_id": "bf861968-2943-4580-9207-e006525a6236",
+		"name": "Demo NTT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12008707",
+		"_collection_link": "https://gold-crescent-693390.postman.co/workspace/My-Workspace~f4f77e6e-412b-416d-83df-cbaa37684a8e/collection/12008707-bf861968-2943-4580-9207-e006525a6236?action=share&source=collection_link&creator=12008707"
+	},
+	"item": [
+		{
+			"name": "Api Exchange Rate",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Api Client",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/channel/demo/api/client",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"channel",
+						"demo",
+						"api",
+						"client"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
