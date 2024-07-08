@@ -5,11 +5,10 @@ import org.springframework.http.ResponseEntity;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Map;
+
 public interface ExchangeRateService {
 
-    public Flux<ExchangeRate> getAllExchangeRate();
-    public Mono<ExchangeRate> findExchangeRateByType(String type);
-    public Mono<ResponseEntity> showExchangeRateByType(String type);
-
-
+    public Mono<ResponseEntity<Flux<ExchangeRate>>> getAllExchangeRate();
+    public Mono<ResponseEntity<Map<String,Object>>> findExchangeRateByType(String type);
 }
