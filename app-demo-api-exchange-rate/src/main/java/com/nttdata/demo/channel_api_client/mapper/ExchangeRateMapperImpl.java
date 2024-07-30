@@ -10,9 +10,6 @@ public class ExchangeRateMapperImpl implements ExchangeRateMapper{
     @Override
     public Flux<ExchangeRate> getAllExchangeRate() {
 
-        ExchangeRate exchange1 = new ExchangeRate("USD", 3.72);
-        ExchangeRate exchange2 = new ExchangeRate("EUR", 4.12);
-
-        return Flux.just(exchange1, exchange2);
+        return null;
     }
 }

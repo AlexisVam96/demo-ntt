@@ -2,6 +2,8 @@ package com.nttdata.demo.app_api_exchange_rate.service;
 
 import com.nttdata.demo.app_api_exchange_rate.entity.ExchangeRate;
 import com.nttdata.demo.app_api_exchange_rate.repository.ExchangeRateRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +19,16 @@ import java.util.Map;
 @Service
 public class ExchangeRateServiceImpl implements ExchangeRateService{
 
+    private Logger log = LoggerFactory.getLogger(ExchangeRateServiceImpl.class);
+
     @Autowired
     private ExchangeRateRepository exchangeRateRepository;
 
     @Override
     public Mono<ResponseEntity<Flux<ExchangeRate>>> getAllExchangeRate() {
         return Mono.just(ResponseEntity.ok()
-                .body(exchangeRateRepository.getAllExchangeRate()));
+                .body(exchangeRateRepository.getAllExchangeRate()
+                        .doOnError(p -> log.error(p.getMessage()))));
     }
 
     @Override
@@ -35,7 +40,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService{
                     body.put("exchangeRate", exchangeRate);
                     return ResponseEntity.ok().body(body);
                 })
-                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()))
+                //.switchIfEmpty(Mono.just(ResponseEntity.notFound().build()))
                 .onErrorResume(error -> {
                     WebClientResponseException errorResponse = (WebClientResponseException) error;
                     if(errorResponse.getStatusCode() == HttpStatus.NOT_FOUND) {
